@@ -9,8 +9,9 @@
 import Foundation
 
 protocol CoinManagerDelegate {
-    func didUpdateCoun(_ coinManager: CoinManager)
-    func didFailWithError(error: Error)
+    func didUpdateCounBtc(price: String, currency: String)
+    func didUpdateCounEth(price: String, currency: String)
+    func didWithError(error: Error)
 }
 
 struct CoinManager {
@@ -20,9 +21,11 @@ struct CoinManager {
     
     let currencyArray = ["AUD", "BRL","CAD","CNY","EUR","GBP","HKD","IDR","ILS","INR","JPY","MXN","NOK","NZD","PLN","RON","RUB","SEK","SGD","USD","ZAR"]
     
+    let criptoCurrencyArray = ["BTC", "ETH"]
+    
     var delegate: CoinManagerDelegate?
     
-    func getCoinPrice(for currency: String) {
+    func getCoinPrice(for currency: String, row: Int) {
         
         let urlString = "\(baseURL)/\(currency)?apikey=\(apiKey)"
         
@@ -35,16 +38,43 @@ struct CoinManager {
             //3.Give the session a task
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
-                    print(error!)
+                    self.delegate?.didWithError(error: error!)
                     return
                 }
-                let dataAsString = String(data: data!, encoding: .utf8)
-                print(dataAsString)
+                
+                if let safeData = data {
+                    if  let bitcoinPrice = self.parseJSON(safeData) {
+                        
+                        let priceString = String(format: "%.2f", bitcoinPrice)
+                        
+                        if bitcoinPrice > 1000 {
+                            self.delegate?.didUpdateCounBtc(price: priceString, currency: currency)
+                        } else {
+                            self.delegate?.didUpdateCounEth(price: priceString, currency: currency)
+                        }
+                    }
+                }
             }
-            
             //4.Start the task
             task.resume()
         }
-        
+    }
+    
+    func parseJSON(_ coinData: Data) -> Double? {
+        let decoder = JSONDecoder()
+        do {
+            
+            //try to decode the data using the CoinData structure
+            let decodedData = try decoder.decode(CoinData.self, from: coinData)
+            
+            //Get the last property from the decoded data.
+            let price = decodedData.rate
+            print(price)
+            return price
+        } catch {
+            
+            delegate?.didWithError(error: error)
+            return nil
+        }
     }
 }

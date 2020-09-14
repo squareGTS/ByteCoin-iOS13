@@ -8,13 +8,8 @@
 
 import Foundation
 
-struct CoinData: Codable {
-    let base : String
-    let quote : String
+struct CoinData: Decodable {
     let rate : Double
-    
-    
-    
 }
 
 
