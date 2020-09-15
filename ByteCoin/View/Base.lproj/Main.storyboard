@@ -25,7 +25,7 @@
                                 </constraints>
                             </pickerView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="WWW-oe-lHd">
-                                <rect key="frame" x="0.0" y="54" width="414" height="270"/>
+                                <rect key="frame" x="0.0" y="54" width="414" height="165"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ByteCoin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAM-79-vXn">
                                         <rect key="frame" x="92" y="0.0" width="230" height="60"/>
@@ -83,52 +83,6 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2K-q2-lna" userLabel="Coin View">
-                                        <rect key="frame" x="20" y="190" width="374" height="80"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="DiK-EL-iGb">
-                                                <rect key="frame" x="0.0" y="0.0" width="364" height="80"/>
-                                                <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bitcoinsign.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="NzV-jB-mqU">
-                                                        <rect key="frame" x="0.0" y="0.5" width="80" height="79"/>
-                                                        <color key="tintColor" name="Icon Color"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="80" id="qlW-IB-kf9"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cyW-on-L73">
-                                                        <rect key="frame" x="90" y="25" width="213.5" height="30"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZ3-of-rT3">
-                                                        <rect key="frame" x="313.5" y="25" width="50.5" height="30"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="NzV-jB-mqU" secondAttribute="bottom" id="sFc-SN-4xj"/>
-                                                    <constraint firstItem="NzV-jB-mqU" firstAttribute="top" secondItem="DiK-EL-iGb" secondAttribute="top" id="tCJ-cj-med"/>
-                                                </constraints>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="tertiaryLabelColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="DiK-EL-iGb" secondAttribute="bottom" id="05d-0r-zs3"/>
-                                            <constraint firstAttribute="height" constant="80" id="4xv-Gj-Y3w"/>
-                                            <constraint firstItem="DiK-EL-iGb" firstAttribute="leading" secondItem="d2K-q2-lna" secondAttribute="leading" id="U9F-6t-mmC"/>
-                                            <constraint firstItem="DiK-EL-iGb" firstAttribute="top" secondItem="d2K-q2-lna" secondAttribute="top" id="ebS-s6-1r4"/>
-                                            <constraint firstAttribute="trailing" secondItem="DiK-EL-iGb" secondAttribute="trailing" constant="10" id="ygw-NZ-ORl"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="40"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -145,10 +99,8 @@
                     </view>
                     <connections>
                         <outlet property="bitcoinLabel" destination="N2a-Ax-iRV" id="xhi-ND-QJD"/>
-                        <outlet property="currencyEthLabel" destination="eZ3-of-rT3" id="tQa-dR-kpN"/>
                         <outlet property="currencyLabel" destination="MAn-y0-nXv" id="neZ-Au-qfC"/>
                         <outlet property="currencyPicker" destination="ct2-jk-pgH" id="1Of-vJ-gnn"/>
-                        <outlet property="ethLabel" destination="cyW-on-L73" id="9Gn-mJ-Dac"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

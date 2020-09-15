@@ -14,9 +14,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     
-    @IBOutlet weak var ethLabel: UILabel!
-    @IBOutlet weak var currencyEthLabel: UILabel!
-    
     var coinManager = CoinManager()
     
     override func viewDidLoad() {
@@ -33,21 +30,15 @@ class ViewController: UIViewController {
 
 extension ViewController: CoinManagerDelegate {
     
-    func didUpdateCounBtc(price: String, currency: String) {
+    func didUpdatePrice(price: String, currency: String) {
+        
         DispatchQueue.main.async {
             self.bitcoinLabel.text = price
             self.currencyLabel.text = currency
         }
     }
     
-    func didUpdateCounEth(price: String, currency: String) {
-        DispatchQueue.main.async {
-            self.ethLabel.text = price
-            self.currencyEthLabel.text = currency
-        }
-    }
-    
-    func didWithError(error: Error) {
+    func didFailWithError(error: Error) {
         print(error)
     }
 }
@@ -72,16 +63,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     //called every time when the user scrolls the picker
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedCurrency = coinManager.currencyArray[row]
-        
-        if self.bitcoinLabel != nil {
-            let selectedCriptoCurency = 0
-            coinManager.getCoinPrice(for: selectedCurrency, row: selectedCriptoCurency)
+            coinManager.getCoinPrice(for: selectedCurrency)
         }
-        
-        if self.ethLabel != nil {
-            let selectedCriptoCurency = 1
-            coinManager.getCoinPrice(for: selectedCurrency, row: selectedCriptoCurency)
-        }
-        
     }
-}
+
